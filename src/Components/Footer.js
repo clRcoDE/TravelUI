@@ -84,32 +84,32 @@ export default class Footer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    backgroundColor: "gold",
+    // backgroundColor: "gold",
     borderColor: "red",
-    borderWidth: 3,
+    // borderWidth: 3,
     flexDirection: "row"
   },
   checkinBookings: {
     flex: 6,
-    backgroundColor: "violet",
-    borderWidth: 3,
+    // backgroundColor: "violet",
+    // borderWidth: 3,
     borderColor: "white",
     // marginLeft:40
   },
   yourBooking: {
     flex: 10,
-    backgroundColor: "lightgreen",
+    // backgroundColor: "lightgreen",
     flexDirection: "row",
     justifyContent: "space-evenly"
   },
   checkinBookingsHeader: {
-    backgroundColor: "white",
-    borderWidth: 4,
+    // backgroundColor: "white",
+    // borderWidth: 4,
     borderColor: "white"
   },
   checkinBookingsSearchBoxes: {
     flexDirection: "row",
-    borderWidth: 3,
+    // borderWidth: 3,
     alignItems: "flex-end"
   },
   bookingSearchBox: {

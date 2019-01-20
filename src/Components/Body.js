@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
     container:{
         flex:8,
-        backgroundColor:'lime',
+        // backgroundColor:'lime',
         flexDirection: 'row',
     }
 })

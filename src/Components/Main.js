@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
 
     container:{
         flex:20,
-        backgroundColor:'royalblue',
+        // backgroundColor:'royalblue',
         borderColor:'royalblue',
-        borderWidth: 3,
+        // borderWidth: 3,
     }
 })

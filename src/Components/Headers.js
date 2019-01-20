@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
 
     container:{
         flex:1,
-        backgroundColor:'gold',
+        // backgroundColor:'gold',
         borderColor:'red',
-        borderWidth: 3,
+        // borderWidth: 3,
     },
     headerTextStyles:{
         fontSize:26,
