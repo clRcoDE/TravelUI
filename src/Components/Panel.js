@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
-import DestinationSuggestions from "./DestinationSuggestions";
+
 export default class Panel extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +19,17 @@ export default class Panel extends Component {
       <View style={styles.container}>
         <View style={styles.panelNavigator}>
           <View style={styles.panelNavigatorElement}>
+            <Image source={require("../Assets/Images/flight.png")}  style={styles.iconSeparator}/>
             <Text>Flight</Text>
           </View>
           <View style={styles.panelNavigatorElement}>
+            <Image source={require("../Assets/Images/home.png")}   style={styles.iconSeparator}/>
+
             <Text>Hotel</Text>
           </View>
           <View style={styles.panelNavigatorElement}>
+            <Image source={require("../Assets/Images/car.png")}  style={styles.iconSeparator} />
+
             <Text>Rental Car</Text>
           </View>
         </View>
@@ -33,51 +38,84 @@ export default class Panel extends Component {
             <View style={styles.panelBodytravelOptionsElements}>
               <TouchableHighlight
                 style={{
-                  
-                  borderRadius: 25,
+                  borderRadius: 25
                 }}
                 onPress={() => {}}
                 underlayColor="rgba(100,100,100,0.5)"
               >
-                <Text
-                  style={styles.panelBodytravelOptionsElementsTextSelected}
-                >
+                <Text style={styles.panelBodytravelOptionsElementsTextSelected}>
                   Roundtrip
                 </Text>
               </TouchableHighlight>
             </View>
             <View style={styles.panelBodytravelOptionsElements}>
-              <Text style={styles.panelBodytravelOptionsElementsText}>One way</Text>
+              <Text style={styles.panelBodytravelOptionsElementsText}>
+                One way
+              </Text>
             </View>
             <View style={styles.panelBodytravelOptionsElements}>
-              <Text style={styles.panelBodytravelOptionsElementsText}>Multi-City</Text>
+              <Text style={styles.panelBodytravelOptionsElementsText}>
+                Multi-City
+              </Text>
             </View>
           </View>
           <View style={styles.panelBodySelectLocation}>
             <View style={styles.locationInputWrapper}>
+              <Image source={require("../Assets/Images/pin.png")}  style={styles.iconSeparator}/>
+
               <TextInput placeholder={"Tbilisi"} />
             </View>
 
             <View style={styles.locationInputWrapper}>
+              <Image source={require("../Assets/Images/pin.png")}  style={styles.iconSeparator} />
+
               <TextInput placeholder={"to"} />
             </View>
 
-            <DestinationSuggestions style={styles.destinationSuggestions} />
+            {/* <DestinationSuggestions style={styles.destinationSuggestions}  /> */}
+            <View style={styles.destinationSuggestionsWrapper}>
+              <TouchableHighlight
+                style={{
+                  borderRadius: 25
+                }}
+                onPress={() => {}}
+                underlayColor="rgba(50,50,50,0.5)"
+              >
+                <Text style={styles.destinationSuggestions}>Munich</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={{
+                  borderRadius: 25
+                }}
+                onPress={() => {}}
+                underlayColor="rgba(50,50,50,0.5)"
+              >
+                <Text style={styles.destinationSuggestions}>Amesterdam</Text>
+              </TouchableHighlight>
+            </View>
           </View>
           <View style={styles.panelBodySelectEstate}>
             <View style={styles.panelBodySelectEstateRow}>
               <View style={styles.estateInput}>
+                <Image source={require("../Assets/Images/calendar.png")}  style={styles.iconSeparator}/>
+
                 <TextInput placeholder={"Departing"} />
               </View>
               <View style={styles.estateInput}>
+                <Image source={require("../Assets/Images/calendar.png")}  style={styles.iconSeparator}/>
+
                 <TextInput placeholder={"Returning"} />
               </View>
             </View>
             <View style={styles.panelBodySelectEstateRow}>
               <View style={styles.estateInput}>
+                <Image source={require("../Assets/Images/people.png")}  style={styles.iconSeparator}/>
+
                 <TextInput placeholder={"Adults"} />
               </View>
               <View style={styles.estateInput}>
+                <Image source={require("../Assets/Images/add.png")}  style={styles.iconSeparator}/>
+
                 <TextInput placeholder={"Economy"} />
               </View>
             </View>
@@ -89,12 +127,15 @@ export default class Panel extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+export  const styles = StyleSheet.create({
   container: {
     flex: 3,
     borderColor: "purple",
     borderWidth: 3,
-    margin: 15
+    margin: 15,
+    marginTop: -15,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15
   },
   panelNavigator: {
     flex: 1,
@@ -102,6 +143,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly"
   },
   panelNavigatorElement: {
+      flexDirection:'row',
     backgroundColor: "purple",
     borderWidth: 3,
     flex: 1,
@@ -110,14 +152,15 @@ const styles = StyleSheet.create({
   },
   panelBody: {
     flex: 6,
-    backgroundColor: "red"
+    backgroundColor: "red",
+    marginLeft:25
   },
   panelBodytravelOptions: {
     flex: 1,
     backgroundColor: "blue",
     flexDirection: "row",
-    marginRight: 50,
-    justifyContent: "space-evenly",
+    marginRight: 65,
+    justifyContent: "space-between",
     alignItems: "center"
   },
   panelBodySelectLocation: {
@@ -132,7 +175,10 @@ const styles = StyleSheet.create({
   },
   panelBodySubmitSearch: {
     flex: 2,
-    backgroundColor: "navy"
+    backgroundColor: "navy",
+    flexDirection: "row",
+    borderBottomRightRadius: 12,
+    borderBottomLeftRadius: 12
   },
   panelBodySelectEstateRow: {
     flexDirection: "row",
@@ -143,27 +189,52 @@ const styles = StyleSheet.create({
   },
   estateInput: {
     flex: 1,
-    borderWidth: 3
+    borderWidth: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  panelBodytravelOptionsElementsText:{
-
-    color:'#888',fontSize:12,letterSpacing:1,fontWeight:'800'
+  panelBodytravelOptionsElementsText: {
+    color: "#888",
+    fontSize: 12,
+    letterSpacing: 1,
+    fontWeight: "800"
   },
-  panelBodytravelOptionsElementsTextSelected:{
+  panelBodytravelOptionsElementsTextSelected: {
     paddingVertical: 8,
     paddingHorizontal: 18,
-    borderRadius:50,
+    borderRadius: 50,
     backgroundColor: "dodgerblue",
     color: "#fff",
     fontWeight: "800",
     fontSize: 12,
-    letterSpacing:1,
-    
+    letterSpacing: 1
   },
-  locationInputWrapper:{
-      borderBottomColor:'#888',
-      borderBottomWidth:1,
-      marginTop:15
+  locationInputWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    borderBottomColor: "#888",
+    borderBottomWidth: 1,
+    marginTop: 15
+  },
+  destinationSuggestionsWrapper: {
+    flex: 1,
+    backgroundColor: "purple",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  destinationSuggestions: {
+    paddingVertical: 8,
+    paddingHorizontal: 18,
+    borderRadius: 50,
+    backgroundColor: "rgba(136,136,136,0.6)",
+    color: "#fff",
+    fontWeight: "800",
+    fontSize: 12,
+    letterSpacing: 1,
+    marginHorizontal: 5
+  },
+  iconSeparator:{
+      marginRight:10,
+    //   marginLeft:10
   }
-
 });

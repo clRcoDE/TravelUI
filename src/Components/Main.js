@@ -24,7 +24,7 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
 
     container:{
-        flex:10,
+        flex:20,
         backgroundColor:'royalblue',
         borderColor:'royalblue',
         borderWidth: 3,

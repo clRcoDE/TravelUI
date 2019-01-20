@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
         borderWidth: 3,
     },
     headerTextStyles:{
-        fontSize:20,
+        fontSize:26,
         fontWeight: '800',
-        color:'#16307c'
+        color:'#0e2360'
     }
     
 })
