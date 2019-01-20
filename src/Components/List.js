@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import Headers from "./Headers";
 
-
 // import {styles as panelStyles} from './Panel'
 
 export default class List extends Component {
@@ -18,7 +17,7 @@ export default class List extends Component {
     super(props);
     this.state = {
       fetchData: [],
-      isBookingSelected:true
+      isBookingSelected: true
     };
   }
 
@@ -81,11 +80,12 @@ export default class List extends Component {
                 data={this.state.fetchData}
                 keyExtractor={item => item.email}
                 renderItem={({ item, index }) => (
-                  <TouchableHighlight
-                    onPress={() => {}}
-                    underlayColor="rgba(50,50,50,0.8)"
-                    style={{ height: 60 }}
-                  >
+                //   <TouchableHighlight
+                //     onPress={() => {}}
+                //     underlayColor="rgba(50,50,50,0.8)"
+                //     style={{ height: 60 }}
+                //   >
+                <View style={{borderWidth:2}}>
                     <View style={styles.itemsWrapper}>
                       <View
                         style={{
@@ -164,7 +164,6 @@ export default class List extends Component {
                           justifyContent: "space-between",
                           flex: 1,
                           alignItems: "center",
-                          borderWidth: 2,
                           borderColor: "red"
                         }}
                       >
@@ -173,7 +172,7 @@ export default class List extends Component {
                             style={{
                               fontSize: 15,
                               fontWeight: "800",
-                              color: "#0e2360"
+                              color: "#0e2360",
                             }}
                           >
                             {item.registered.date.substring(6, 7)} -
@@ -188,7 +187,7 @@ export default class List extends Component {
                             {item.dob.date.substring(6, 7)} Aug
                           </Text>
                         </View>
-                        <View style={{justifyContent: 'center',alignItems: 'center',height:30}}>
+                        {/* <View style={{}}>
                           {this.state.isBookingSelected ? (
                             <View style={{flex:1,justifyContent: 'center',alignitems:'center',flexDirection: 'row',borderRadius:50,backgroundColor:'dodgerblue'}}>
                               <Text style={styles.bookingTextSelected}>
@@ -213,10 +212,32 @@ export default class List extends Component {
                                 />
                             </View>
                           )}
+                        </View> */}
+
+                        <View
+                          style={{
+
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            // borderRadius: 50,
+                            backgroundColor: "dodgerblue",
+                            height:40,
+                            width:125
+                          }}
+                        >
+                          <Text style={styles.bookingTextSelected}>
+                            Booking Now
+                          </Text>
+                          {/* <Image
+                            source={require("../Assets/Images/arrow-white.png")}
+                            // style={{ marginLeft: 10 }}
+                          /> */}
                         </View>
+
                       </View>
                     </View>
-                  </TouchableHighlight>
+                  </View>
                 )}
               />
             </View>
@@ -233,7 +254,7 @@ export default class List extends Component {
                     fontSize: 15,
                     fontWeight: "800",
                     color: "#0e2360",
-                    marginRight:40
+                    marginRight: 40
                   }}
                 >
                   {" "}
@@ -303,16 +324,15 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 18,
     // paddingVertical: 10,
     color: "#fff",
-    fontWeight: "600",
+    fontWeight: "600"
 
     // borderRadius: 50,
     // marginRight:30
-
   },
   bookingTextRegular: {
     // backgroundColor: "#fff",
     color: "#888",
-    fontWeight: "600",
+    fontWeight: "600"
     // paddingHorizontal: 18,
     // paddingVertical: 10,
     // borderRadius: 50,
