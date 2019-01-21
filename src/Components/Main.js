@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text ,Image,StyleSheet } from 'react-native';
 import Footer from '../Components/Footer';
 import Body from '../Components/Body';
-
+import Slider from '../Components/Slider'
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,8 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <Body/>
-        <Footer/>
+        {/* <Footer/> */}
+        <Slider/>
       </View>
     );
   }
