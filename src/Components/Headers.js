@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     headerTextStyles:{
         fontSize:26,
-        fontWeight: '800',
+        fontWeight: '900',
         color:'#0e2360'
     }
     

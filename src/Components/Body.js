@@ -25,7 +25,7 @@ export default class Body extends Component {
 const styles = StyleSheet.create({
 
     container:{
-        flex:8,
+        flex:6,
         // backgroundColor:'lime',
         flexDirection: 'row',
     }

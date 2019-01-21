@@ -16,19 +16,37 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fetchData: []
+      fetchData: [],
+      seed:1
     };
   }
 
   loadOffers = () => {
-    fetch(`https://randomuser.me/api/?results=10`)
+    let {fetchData} = this.state;
+    let {seed}= this.state;
+    // console.warn('called load')
+    fetch(`https://randomuser.me/api/?page=${seed}&results=10`)
       .then(res => res.json())
-      .then(data => this.setState({ fetchData: data.results }))
+      .then(data =>  this.setState({ fetchData: [...fetchData,...data.results]}))
       .catch(e => Alert.alert("connection failed"));
   };
 
+  itemSeparatorView=()=>{
+
+    return (
+      <View style={{height:1,backgroundColor:'rgba(225,225,255,0.75)'}}></View>
+    )
+  }
+
   componentDidMount() {
     this.loadOffers();
+    // this.loadMore()
+    // this.itemSeparatorView()
+  }
+
+  loadMore=()=>{
+    // console.warn('load more called')
+    this.setState(prev=>({seed:prev.seed++}),()=>{this.loadOffers()})
   }
 
   render() {
@@ -77,6 +95,8 @@ export default class List extends Component {
               <FlatList
                 data={this.state.fetchData}
                 keyExtractor={item => item.email}
+                ItemSeparatorComponent={this.itemSeparatorView}
+
                 renderItem={({ item, index }) => (
 
                   <TouchableHighlight
@@ -146,7 +166,7 @@ export default class List extends Component {
                           </Text>
                         </View>
                       </View>
-                      <View style={[styles.listCol]}>
+                      <View style={[styles.listCol,{marginLeft:40}]}>
                         <View style={{ flexDirection: "row" }}>
                           <Text
                             style={{
@@ -196,7 +216,7 @@ export default class List extends Component {
                         {this.state.isBookingSelected ? (
                           <View style={[styles.bookingViewSelected]}>
                             <Text style={styles.bookingTextSelected}>
-                              Booking Now
+                              Book Now
                             </Text>
                             <Image
                               source={require("../Assets/Images/arrow-white.png")}
@@ -206,7 +226,7 @@ export default class List extends Component {
                         ) : (
                           <View style={[styles.bookingViewRegular]}>
                             <Text style={styles.bookingTextRegular}>
-                              Booking Now
+                              Book Now
                             </Text>
                             <Image
                               source={require("../Assets/Images/arrow-black.png")}
@@ -225,15 +245,17 @@ export default class List extends Component {
                 <Text style={{ color: "#888" }}>
                   * Round-trip including all taxes,
                 </Text>
-                <Text style={{ color: "#888" }}>fees and carrier charges.</Text>
+                <Text style={{ color: "#888" ,marginTop:10}}>fees and carrier charges.</Text>
               </View>
-              <TouchableHighlight  onPress={()=>{}} underlayColor='rgba(200,200,200,0.5)' style={styles.seemoreButton}>
-                <Text
+              <TouchableHighlight  onPress={()=>{}} underlayColor='rgba(200,200,200,0.5)' style={{borderRadius:50,height:30,marginRight:85,width:60}}>
+               <View  style={styles.seemoreButton}>
+               <Text
                   style={[styles.seeallTextStyle]}
                 >
                   {" "}
                   See all{" "}
                 </Text>
+                </View>
               </TouchableHighlight>
             </View>
           </View>
@@ -247,7 +269,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     // backgroundColor: "gold",
-    borderColor: "orange"
+    borderColor: "orange",
+    marginLeft: 50,
+    marginRight:60,
     // borderWidth: 3
   },
   listNav: {
@@ -261,7 +285,7 @@ const styles = StyleSheet.create({
   listBody: {
     flex: 6,
     // borderWidth: 3,
-    marginLeft: 50
+    
   },
   flatlistWrapper: { flex: 1 },
   flatlistHeader: {
@@ -331,25 +355,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 50,
-    backgroundColor: "white",
+    // backgroundColor: "white",
     height: 32,
-    width: 130
+    width: 130,
+    // borderWidth:3
   },
   listCol: {
     flexDirection: "row",
     justifyContent: "space-between",
     flex: 1,
     alignItems: "center",
-    marginRight: 70
+    marginRight: 40
   },
   seeallTextStyle:{
                     fontSize: 15,
                     fontWeight: "800",
                     color: "#0e2360",
-                    marginRight: 115
+                   
   },
   seemoreButton:{
-    padding:5,
-    borderRadius:25
+    // padding:5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex:1,
+    // borderWidth:2,
+    borderRadius:50
   }
 });

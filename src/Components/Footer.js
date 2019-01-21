@@ -15,10 +15,10 @@ export default class Footer extends Component {
       <View style={styles.container}>
         <View style={styles.checkinBookings}>
           <Headers
-            style={styles.checkinBookingsHeader}
+            
             text={"Check-in/My Booking"}
           />
-          <View style={styles.checkinBookingsSearchBoxes}>
+          <View style={[styles.checkinBookingsSearchBoxes,{marginTop:20}]}>
             <TextInput
               style={styles.bookingSearchBox}
               placeholder={"Last name"}
@@ -33,7 +33,7 @@ export default class Footer extends Component {
               placeholder={"Booking Code"}
             />
           </View>
-          <View style={styles.goSearchBooking}>
+          <View style={[styles.goSearchBooking,{marginTop:15}]}>
             <Text style={{ fontWeight: "600", color: "#0e2360" }}>Go</Text>
             <Image source={require("../Assets/Images/arrow-black.png")} style={{marginLeft:15}}/>
           </View>
@@ -46,7 +46,7 @@ export default class Footer extends Component {
               style={{ width: 92, height: 92, borderRadius: 15 }}
             />
             <Text
-              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 10 }}
+              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 16 }}
             >
               Prague
             </Text>
@@ -58,7 +58,7 @@ export default class Footer extends Component {
               style={{ width: 92, height: 92, borderRadius: 15 }}
             />
             <Text
-              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 10 }}
+              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 16 }}
             >
               Stockholm
             </Text>
@@ -70,7 +70,7 @@ export default class Footer extends Component {
               style={{ width: 92, height: 92, borderRadius: 15 }}
             />
             <Text
-              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 10 }}
+              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 16 }}
             >
               Bali
             </Text>
@@ -94,27 +94,31 @@ const styles = StyleSheet.create({
     // backgroundColor: "violet",
     // borderWidth: 3,
     borderColor: "white",
+    // justifyContent: 'space-evenly',
     // marginLeft:40
+    marginTop:25
   },
   yourBooking: {
-    flex: 10,
+    flex: 8.5,
     // backgroundColor: "lightgreen",
     flexDirection: "row",
     justifyContent: "space-evenly"
   },
   checkinBookingsHeader: {
     // backgroundColor: "white",
-    // borderWidth: 4,
-    borderColor: "white"
+    borderWidth: 4,
+    borderColor: "white",
+    marginTop:40
   },
   checkinBookingsSearchBoxes: {
     flexDirection: "row",
     // borderWidth: 3,
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    // backgroundColor:'red'
   },
   bookingSearchBox: {
     flex: 1,
-    backgroundColor: "rgba(100,100,100,0.5)",
+    backgroundColor: "rgba(225,225,255,0.5)",
     borderRadius: 25,
     paddingHorizontal: 20
   },

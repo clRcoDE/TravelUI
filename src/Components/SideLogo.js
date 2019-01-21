@@ -13,15 +13,17 @@ export default class SideLogo extends Component {
         <View style={styles.logoWrapper}>
           <Image
             source={require("../Assets/Images/compass.png")}
-            style={{ marginBottom: 25 }}
+            style={{ marginBottom:5 }}
           />
           <Text
             style={{
               transform: [{ rotate: "-90deg" }],
-              marginBottom: 25,
+              marginTop: 25,
               color: "#0e2360",
               fontWeight: "600",
-              fontSize: 16
+              fontSize: 22,
+              // borderWidth:3,
+              width:80
             }}
           >
             Travel.
@@ -64,8 +66,9 @@ const styles = StyleSheet.create({
   logoWrapper: {
     flex: 3,
     // backgroundColor: "yellowgreen",
-    justifyContent: "flex-end",
-    alignItems: "center"
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingTop: 40,
   },
   socialNetworkWrapper: {
     flex: 10,
