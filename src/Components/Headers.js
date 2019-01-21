@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text ,StyleSheet} from 'react-native';
 
+
+
+
 export default class Headers extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      
     };
   }
 
   render() {
+    
     return (
-      <View>
+      <View 
+      // style={{opacity:this.props.styler}}
+      >
         <Text style={styles.headerTextStyles}>{this.props.text}</Text>
       </View>
     );

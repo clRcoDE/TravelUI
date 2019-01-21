@@ -6,7 +6,8 @@ import {
   StyleSheet,
   FlatList,
   TouchableHighlight,
-  Alert
+  Alert,
+  Animated
 } from "react-native";
 import Headers from "./Headers";
 
@@ -17,10 +18,15 @@ export default class List extends Component {
     super(props);
     this.state = {
       fetchData: [],
-      seed:1
+      seed:1,
+      fadeAnim : new Animated.Value(0)
     };
   }
 
+
+  fadeInListElements =()=>{
+    Animated.timing(this.state.fadeAnim,{toValue:1,duration:3000,delay:1500}).start()
+  }
   loadOffers = () => {
     let {fetchData} = this.state;
     let {seed}= this.state;
@@ -40,6 +46,7 @@ export default class List extends Component {
 
   componentDidMount() {
     this.loadOffers();
+    this.fadeInListElements()
     // this.loadMore()
     // this.itemSeparatorView()
   }
@@ -88,21 +95,19 @@ export default class List extends Component {
         </View>
         <View style={styles.listBody}>
           <View style={styles.flatlistWrapper}>
-            <View style={styles.flatlistHeader}>
-              <Headers text={"Best Value Offers to Europe!"} />
-            </View>
+            <Animated.View style={styles.flatlistHeader}>
+              <Headers text={"Best Value Offers to Europe!"}  styler={this.state.fadeAnim}/>
+            </Animated.View>
             <View style={styles.flatlistBody}>
               <FlatList
                 data={this.state.fetchData}
                 keyExtractor={item => item.email}
                 ItemSeparatorComponent={this.itemSeparatorView}
-
+                  showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
 
-                  <TouchableHighlight
-                    onPress={() => {}}
-                    underlayColor="rgba(50,50,50,0.8)"
-                    style={{ height: 85 }}
+                  <Animated.View
+                    style={{ height: 85,opacity:this.state.fadeAnim }}
                   >
 
                     {/* <View style={styles.flatlistSingleItem}> */}
@@ -236,7 +241,7 @@ export default class List extends Component {
                         )}
                       </View>
                     </View>
-                  </TouchableHighlight>
+                  </Animated.View>
                 )}
               />
             </View>
@@ -247,13 +252,13 @@ export default class List extends Component {
                 </Text>
                 <Text style={{ color: "#888" ,marginTop:10}}>fees and carrier charges.</Text>
               </View>
-              <TouchableHighlight  onPress={()=>{}} underlayColor='rgba(200,200,200,0.5)' style={{borderRadius:50,height:30,marginRight:85,width:60}}>
+              <TouchableHighlight  onPress={this.loadMore} underlayColor='rgba(200,200,200,0.5)' style={{borderRadius:50,height:30,marginRight:65,width:100}}>
                <View  style={styles.seemoreButton}>
                <Text
                   style={[styles.seeallTextStyle]}
                 >
                   {" "}
-                  See all{" "}
+                  See more{" "}
                 </Text>
                 </View>
               </TouchableHighlight>
