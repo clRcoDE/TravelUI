@@ -13,8 +13,8 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Body/>
-        <Footer/>
+        <Body theme={this.props.theme}/>
+        <Footer theme={this.props.theme}/>
         {/* <Anim/> */}
       </View>
     );

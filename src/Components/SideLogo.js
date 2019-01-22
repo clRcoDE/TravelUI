@@ -9,7 +9,7 @@ export default class SideLogo extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor:'transparent'}]}>
         <View style={styles.logoWrapper}>
           <Image
             source={require("../Assets/Images/compass.png")}
@@ -19,7 +19,7 @@ export default class SideLogo extends Component {
             style={{
               transform: [{ rotate: "-90deg" }],
               marginTop: 25,
-              color: "#0e2360",
+              color: this.props.theme ? "#0e2360" : '#eee',
               fontWeight: "600",
               fontSize: 22,
               // borderWidth:3,
@@ -33,7 +33,7 @@ export default class SideLogo extends Component {
           <Text
             style={{
               fontWeight: "600",
-              color: "#0e2360",
+              color: this.props.theme? "#0e2360" : '#999',
               fontSize: 12,
               marginBottom: 100,
               transform: [{ rotate: "-90deg" }]
@@ -44,7 +44,7 @@ export default class SideLogo extends Component {
           <Text
             style={{
               fontWeight: "600",
-              color: "#0e2360",
+              color: this.props.theme? "#0e2360" : '#999',
               fontSize: 12,
               marginBottom: 100,
               transform: [{ rotate: "-90deg" }]
@@ -61,7 +61,7 @@ export default class SideLogo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "crimson"
+   
   },
   logoWrapper: {
     flex: 3,

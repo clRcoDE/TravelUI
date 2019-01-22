@@ -18,7 +18,7 @@ export default class Headers extends Component {
       <View 
       // style={{opacity:this.props.styler}}
       >
-        <Text style={styles.headerTextStyles}>{this.props.text}</Text>
+        <Text style={[styles.headerTextStyles,{color:this.props.color?'#0e2360':'#eee'}]}>{this.props.text}</Text>
       </View>
     );
   }
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     headerTextStyles:{
         fontSize:26,
         fontWeight: '900',
-        color:'#0e2360'
+        // color:'#0e2360'
     }
     
 })

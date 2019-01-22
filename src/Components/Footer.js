@@ -15,11 +15,25 @@ let deviceWidth = Dimensions.get("window").width/2;
 export default class Footer extends Component {
   constructor(props) {
     super(props);
-    this.state = {imgs:[] , fadeAnim: new Animated.Value(0)};
+    this.state = {imgs:[] , fadeAnim: new Animated.Value(0)  ,transX : new Animated.Value(20)};
   }
 
   
   scrollX = new Animated.Value(0);
+
+  startanimate =() => {
+
+    Animated.timing(                  // Animate over time
+      this.state.transX,                 // The animated value to drive
+            
+      {
+        toValue: 1,                   // Animate to opacity: 1 (opaque)
+        duration: 2000,              // Make it take a while
+      }
+    ).start(); 
+    
+  }
+
   componentDidMount() {
     fetch(`https://api.unsplash.com/photos/?client_id=${accessID}`)
       .then(res => res.json())
@@ -29,15 +43,26 @@ export default class Footer extends Component {
       .catch(err => {
         console.log("Error happened during fetching!", err);
       });
+
+
+      // Animated.timing(                  // Animate over time
+      //   this.state.transX,                 // The animated value to drive
+              
+      //   {
+      //     toValue: 120,                   // Animate to opacity: 1 (opaque)
+      //     duration: 2000,              // Make it take a while
+      //   }
+      // ).start(); 
   }
+
+
   render() {
     let position = Animated.divide(this.scrollX, deviceWidth);
     let scrollIndicator = this.state.imgs;
-    let ii =scrollIndicator.length/2;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor:'transparent'}]}>
         <View style={styles.checkinBookings}>
-          <Headers text={"Check-in/My Booking"} />
+          <Headers color={this.props.theme} text={"Check-in/My Booking"} />
           <View style={[styles.checkinBookingsSearchBoxes, { marginTop: 20 }]}>
             <TextInput
               style={styles.bookingSearchBox}
@@ -54,7 +79,7 @@ export default class Footer extends Component {
             />
           </View>
           <View style={[styles.goSearchBooking, { marginTop: 15 }]}>
-            <Text style={{ fontWeight: "600", color: "#0e2360" }}>Go</Text>
+            <Text style={{ fontWeight: "600", color:this.props.theme?'#0e2360':'#999' }}>Go</Text>
             <Image
               source={require("../Assets/Images/arrow-black.png")}
               style={{ marginLeft: 15 }}
@@ -105,9 +130,26 @@ export default class Footer extends Component {
             data={this.state.imgs}
             keyExtractor={item => item.user.id}
             horizontal={true}
-            onScroll={Animated.event([
-              { nativeEvent: { contentOffset: { x: this.scrollX } } }
-            ])}
+            // onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: this.scrollX} } },])}
+
+
+            onScroll={Animated.event(
+              [{nativeEvent: {contentOffset: {x:  this.scrollX}}},]// Optional async listener
+            )}
+
+
+// onScroll={Animated.event([{ nativeEvent: {contentOffset: {x: this.state.transX}}}])}
+  //           onScroll={Animated.event(
+  //             [{ nativeEvent: { contentOffset: { } } }],
+  //   {
+  //     useNativeDriver: true,
+  //     listener: event => {
+  //       const offsetX = event.nativeEvent.contentOffset.x
+  //       // do something special
+  //     },
+  //   },
+  // )}
+            // onScroll={this.startanimate}
             showsHorizontalScrollIndicator={false}
             pagingEnabled={true}
             renderItem={({ item, index }) => (
@@ -117,11 +159,14 @@ export default class Footer extends Component {
               style={{ width: 92, height: 92, borderRadius: 15 }}
             />
             <Text
-              style={{ fontWeight: "600", color: "#2f4072", marginLeft: 16 }}
+              style={{ fontWeight: "600", color: this.props.theme ? "#2f4072" : '#58c4fc', marginLeft: 16 }}
             >{item.user.last_name}</Text>
           </View>
             )}
           /><View style={styles.dotsBox}>
+
+
+          
             {_.times(scrollIndicator.length/2).map((_,i) => {
               // console.warn(scrollIndicator.length);
             //  i = Math.floor(i/2);
@@ -129,21 +174,31 @@ export default class Footer extends Component {
             // let aa = new Set()
               // console.warn(Math.round(i/2))
               let opacity = position.interpolate({
-                inputRange: [i-4.5 , i, i +4.5],
-                outputRange: [0.2, 1, 0.2],
-                extrapolate: 'extend'
+                inputRange: [i-1,i,i+1],
+                outputRange: [0.5,1,0.5],
+                extrapolate:'clamp'
               });
+             Animated.timing(                  // Animate over time
+                this.state.transX,                        // The animated value to drive
+                      
+                {
+                  toValue: 25,duration: 2000,
+                
+                }
+              ).start(); 
+
+
               return (
                 <Animated.View
                   key={i}
                   style={{
                     opacity,
-
-                    width: 15,
+                      width:this.state.transX,
                     height: 15,
-                    backgroundColor: "#595959",
+                    backgroundColor: "#444",
                     margin: 20,
-                    borderWidth: 1,
+                    borderWidth: 3,
+                    borderColor: this.props.theme ? '#000' : '#58c4fc',
                     borderRadius: 50
                   }}
                 />
@@ -201,7 +256,7 @@ const styles = StyleSheet.create({
   },
   bookingSearchBox: {
     flex: 1,
-    backgroundColor: "rgba(225,225,255,0.5)",
+    backgroundColor: "rgba(175,175,225,0.3)",
     borderRadius: 25,
     paddingHorizontal: 20
   },

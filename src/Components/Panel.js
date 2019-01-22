@@ -19,7 +19,7 @@ export default class Panel extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor:this.props.theme?'#405089':'#111'}]}>
         <View style={styles.panelNavigator}>
           <View style={[styles.panelNavigatorElementSelected]}>
             <Image
@@ -153,7 +153,7 @@ export default class Panel extends Component {
           <Text style={styles.whiteTexts}>Add a Hotel</Text>
           </View>
 
-          <TouchableHighlight onPress={()=>{}} underlayColor='rgba(100,100,100,1.0)' style={styles.submittWrapper}><Text style={styles.whiteTexts}>Search Flights</Text></TouchableHighlight>
+          <TouchableHighlight onPress={()=>{}} underlayColor='rgba(88,196,252,0.5)' style={styles.submittWrapper}><Text style={styles.whiteTexts}>Search Flights</Text></TouchableHighlight>
           
           </View>
         </View>
@@ -171,7 +171,8 @@ export const styles = StyleSheet.create({
     marginTop: -15,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
-    backgroundColor:'#405089'
+    elevation:5
+    // backgroundColor:'#405089'
   },
   whiteTexts:{
 
@@ -192,7 +193,7 @@ export const styles = StyleSheet.create({
   },
   panelNavigatorElement: {
     flexDirection: "row",
-    backgroundColor:'rgba(225,225,225,0.15)',
+    backgroundColor:'rgba(175,175,225,0.3)',
     // backgroundColor: "purple",
     // borderWidth: 3,
     flex: 1,
@@ -318,6 +319,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical:10,
-    paddingHorizontal:45
+    paddingHorizontal:45,
   }
 });

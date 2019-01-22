@@ -14,8 +14,8 @@ export default class Body extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Panel/>
-        <List/>
+        <Panel theme={this.props.theme} />
+        <List theme={this.props.theme} />
       </View>
     );
   }

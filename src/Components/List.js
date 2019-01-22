@@ -25,7 +25,7 @@ export default class List extends Component {
 
 
   fadeInListElements =()=>{
-    Animated.timing(this.state.fadeAnim,{toValue:1,duration:3000,delay:1500}).start()
+    Animated.timing(this.state.fadeAnim,{toValue:1,duration:3000}).start()
   }
   loadOffers = () => {
     let {fetchData} = this.state;
@@ -40,13 +40,20 @@ export default class List extends Component {
   itemSeparatorView=()=>{
 
     return (
-      <View style={{height:1,backgroundColor:'rgba(225,225,255,0.75)'}}></View>
+      <View style={{height:1,backgroundColor:this.props.theme?'#bbb':'#555'}}></View>
     )
   }
 
   componentDidMount() {
+
+
     this.loadOffers();
     this.fadeInListElements()
+
+
+
+
+
     // this.loadMore()
     // this.itemSeparatorView()
   }
@@ -60,18 +67,21 @@ export default class List extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.listNav}>
+
+
+
           <View style={styles.listNavElement}>
-            <Text style={{ fontSize: 12, color: "#888", fontWeight: "600" }}>
+            <Text style={{ fontSize: 12, color:this.props.theme? "#777" : '#ccc', fontWeight: "600" }}>
               Check-in
             </Text>
           </View>
           <View style={styles.listNavElement}>
-            <Text style={{ fontSize: 12, color: "#888", fontWeight: "600" }}>
+            <Text style={{ fontSize: 12, color:this.props.theme? "#777" : '#ccc', fontWeight: "600" }}>
               Flight Status
             </Text>
           </View>
           <View style={styles.listNavElement}>
-            <Text style={{ fontSize: 12, color: "#0e2360", fontWeight: "600" }}>
+            <Text style={{ fontSize: 12, color: this.props.theme? "#0e2360" : '#58c4fc', fontWeight: "800" }}>
               Menu
             </Text>
           </View>
@@ -83,26 +93,27 @@ export default class List extends Component {
           >
             <View
               style={{
-                borderColor: "#0e2360",
+                borderColor: this.props.theme ?  "#0e2360" :'#58c4fc',
                 borderWidth: 1,
                 marginRight: 15
               }}
             />
             <View
-              style={{ borderColor: "#0e2360", borderWidth: 1, marginLeft: 15 }}
+              style={{ borderColor: this.props.theme ? "#0e2360" :'#58c4fc', borderWidth: 1, marginLeft: 15 }}
             />
           </View>
         </View>
         <View style={styles.listBody}>
           <View style={styles.flatlistWrapper}>
             <Animated.View style={styles.flatlistHeader}>
-              <Headers text={"Best Value Offers to Europe!"}  styler={this.state.fadeAnim}/>
+              <Headers text={"Best Value Offers to Europe!"} color={this.props.theme} styler={this.state.fadeAnim}/>
             </Animated.View>
             <View style={styles.flatlistBody}>
               <FlatList
                 data={this.state.fetchData}
                 keyExtractor={item => item.email}
                 ItemSeparatorComponent={this.itemSeparatorView}
+                extraData={this.props.theme}
                   showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
 
@@ -123,8 +134,7 @@ export default class List extends Component {
                           <Text
                             style={{
                               fontSize: 15,
-                              fontWeight: "800",
-                              color: "#0e2360"
+                              color: this.props.theme? "#777" : '#ccc', fontWeight: "600" 
                             }}
                           >
                             {item.location.city}
@@ -154,7 +164,7 @@ export default class List extends Component {
                             style={{
                               fontSize: 15,
                               fontWeight: "800",
-                              color: "#0e2360"
+                              color: this.props.theme? "#0e2360" :"#ccc"
                             }}
                           >
                             {item.dob.age}0{" "}
@@ -163,7 +173,8 @@ export default class List extends Component {
                             style={{
                               fontSize: 15,
                               fontWeight: "800",
-                              color: "#0e2360"
+                              color: this.props.theme? "#0e2360" :"#ccc"
+                             
                             }}
                           >
                             {" "}
@@ -177,7 +188,8 @@ export default class List extends Component {
                             style={{
                               fontSize: 15,
                               fontWeight: "800",
-                              color: "#0e2360"
+                              color: this.props.theme? "#0e2360" :"#ccc"
+                              
                             }}
                           >
                             {item.registered.date.substring(6, 7)} -
@@ -186,7 +198,8 @@ export default class List extends Component {
                             style={{
                               fontSize: 15,
                               fontWeight: "800",
-                              color: "#0e2360"
+                              color: this.props.theme? "#0e2360" :"#ccc"
+                              
                             }}
                           >
                             {item.dob.date.substring(6, 7)} Aug
@@ -230,7 +243,7 @@ export default class List extends Component {
                           </View>
                         ) : (
                           <View style={[styles.bookingViewRegular]}>
-                            <Text style={styles.bookingTextRegular}>
+                            <Text style={[styles.bookingTextRegular,{color:this.props.theme?'#777':'#ccc'}]}>
                               Book Now
                             </Text>
                             <Image
@@ -255,7 +268,7 @@ export default class List extends Component {
               <TouchableHighlight  onPress={this.loadMore} underlayColor='rgba(200,200,200,0.5)' style={{borderRadius:50,height:30,marginRight:65,width:100}}>
                <View  style={styles.seemoreButton}>
                <Text
-                  style={[styles.seeallTextStyle]}
+                  style={[styles.seeallTextStyle,{color:this.props.theme?'#0e2360':'#58c4fc'}]}
                 >
                   {" "}
                   See more{" "}
@@ -334,7 +347,7 @@ const styles = StyleSheet.create({
   },
   bookingTextRegular: {
     // backgroundColor: "#fff",
-    color: "#888",
+    // color: "#888",
     fontWeight: "600"
     // paddingHorizontal: 18,
     // paddingVertical: 10,
@@ -375,7 +388,7 @@ const styles = StyleSheet.create({
   seeallTextStyle:{
                     fontSize: 15,
                     fontWeight: "800",
-                    color: "#0e2360",
+                    // color: "#0e2360",
                    
   },
   seemoreButton:{
