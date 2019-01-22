@@ -1,0 +1,16 @@
+https://blog.callstack.io/react-native-animations-revisited-part-i-783143d4884
+
+https://blog.pusher.com/animation-react-native-part-1/
+https://blog.pusher.com/animation-react-native-part-2/
+
+https://scotch.io/@rakshitkrsoral/the-beginners-guide-to-using-react-native-animated-api
+https://www.roxo.ir/react-native-animations-part1/
+
+https://codeburst.io/butter-smooth-animations-in-react-native-93a3b86adf1
+
+https://medium.com/react-native-training/react-native-animations-using-the-animated-api-ebe8e0669fae
+
+
+
+https://medium.com/@philipshen13/react-native-layoutanimation-267489b67a20
+https://medium.com/@nemishah1212/messing-around-with-react-natives-layout-animation-4260d5022cab
